@@ -1,0 +1,135 @@
+{% include "adminpage/adminheader.html" %}
+{% load static %}
+ 
+<head>
+    <style>
+        
+            .form-group {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 10px; /* Reduce the margin */
+            }
+        
+            .form-group label {
+                font-weight: bold;
+                color: black;
+                text-align: right;
+                width: 122px; /* Adjust the width as needed */
+            }
+        
+            .form-group input, .form-group select {
+                flex: 1;
+                background-color: white;
+                margin-left: 30px; 
+            }
+        
+    </style>
+</head>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="{% static 'fonts/material-icon/css/material-design-iconic-font.min.css' %}">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{% static 'css/style1.css' %}">
+ 
+
+    <div class="main">
+        <section class="signup">
+            <div class="container">
+                <div style="background-color: rgb(78 115 223 / 22%);" class="signup-content">
+                    <form method="POST" id="signup-form" class="signup-form">
+                        {% csrf_token %}
+                        <h2 class="form-title">Add Vehicle</h2>
+    
+                        <div class="form-group">
+                            <label for="vehicle_type">Vehicle Name: </label>
+                            <select class="form-input" name="name" id="vehicle_type" required>
+                                <option value="{{data.name.v_name}}">{{data.name.v_name}}</option>
+                                {% for vehname in v_name%}
+                                <option value="{{vehname}}">{{vehname}}</option>
+                                 {% endfor %}
+                            </select>
+                        </div>
+    
+                        <div class="form-group">
+                            <label for="vin_number">VIN Number: </label>
+                            <input required style="background-color: white;" type="text" class="form-input" name="vin" value="{{data.vin_number}}" id="vin_number" required/>
+                        </div>
+    
+                        <div class="form-group">
+                            <label for="image1">Image 1: </label>
+                            <input required style="background-color: white;" type="file" class="form-input" name="image1" value="{{data.image}}" id="image1" accept="image/*" required/>
+                        </div>
+    
+                        <div class="form-group">
+                            <label for="image2">Image 2: </label>
+                            <input required style="background-color: white;" type="file" class="form-input" name="image2" value="{{data.image1}}" id="image2" accept="image/*"  >
+                        </div>
+    
+                        {% comment %} <div class="form-group">
+                            <label for="image3">Image 3: </label>
+                            <input required style="background-color: white;" type="file" class "form-input" name="image3" id="image3" accept="image/*" required/>
+                        </div> {% endcomment %}
+    
+                        <div class="form-group">
+                            <label for="year">Year: </label>
+                            <input required style="font-weight: bold; color: black;" type="text" class="form-input" name="year" value="{{data.year}}" id="year" required/>
+                        </div>
+    
+                        <div class="form-group">
+                            <label for="price">Price: </label>
+                            <input type="text" class="form-input" name="price" value="{{data.price}}" id="price" required/>
+                        </div>
+    
+                        <div class="form-group">
+                            <label for="gear_type">Gear Type: </label>
+                            <input type="text" class="form-input" name="gear_type" value="{{data.gear_type}}" id="gear_type" required/>
+                        </div>
+    
+                        <div class="form-group">
+                            <label for="mileage">Mileage: </label>
+                            <input type="text" class="form-input" name="mileage" value="{{data.mileagae}}" id="mileage" required/>
+                        </div>
+    
+                        <div class="form-group">
+                            <label for="power">Power: </label>
+                            <input type="text" class="form-input" name="power" value="{{data.power}}" id="power" >
+                        </div>
+    
+                        <div class="form-group">
+                            <label for="fuel_type">Fuel Type: </label>
+                            <input type="text" class="form-input" name="fuel_type" value="{{data.fueltype}}" id="fuel_type" required/>
+                        </div>
+    
+                        <div class="form-group">
+                            <label for="kilometer">Kilometer: </label>
+                            <input type="text" class="form-input" name="kilometer " value="{{data.kilometer}}" id="kilometer" required/>
+                        </div>
+    
+                        <div class="form-group">
+                            <label for="engine">Engine: </label>
+                            <input type="text" class="form-input" name="engine"  value="{{data.engine}}" id="engine" required/>
+                        </div>
+    
+                        <div class="form-group">
+                            <label for="color">Color: </label>
+                            <input type="text" class="form-input" name="color" value="{{data.color}}" id="color" required/>
+                        </div>
+    
+                         
+    
+                        <div class="form-group" style="text-align: center;   margin-left:0p  ">
+                            <input type="submit" name="submit" id="submit" class="form-submit" value="Submit" style="margin-left: 150px;" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+<!-- JS -->
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+
+{% include 'adminpage/adminfooter.html'%}

@@ -1,0 +1,306 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="description" content="HVAC Template">
+    <meta name="keywords" content="HVAC, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'login/fonts/icomoon/style.css' %}">
+
+    <link rel="stylesheet" href="{% static 'login/css/owl.carousel.min.css' %}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'login/css/bootstrap.min.css' %}">
+    
+    <!-- Style -->
+    <link rel="stylesheet" href="{% static 'login/css/style.css' %}">
+
+    <link rel="stylesheet" href="{% static 'homepage/css/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'homepage/css/font-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'homepage/css/elegant-icons.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'homepage/css/nice-select.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'homepage/css/magnific-popup.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'homepage/css/jquery-ui.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'homepage/css/owl.carousel.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'homepage/css/slicknav.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'homepage/css/style.css' %}" type="text/css">
+
+    <title>Login</title>
+
+    <style>
+      .custom-button {
+        background-color: #17a2b8; /* Replace with your desired color */
+        color: white; /* Text color */
+      }
+    </style>
+  </head>
+  <body>
+
+    <div id="preloder">
+      <div class="loader"></div>
+  </div>
+
+  <!-- Offcanvas Menu Begin -->
+  <div class="offcanvas-menu-overlay"></div>
+  <div class="offcanvas-menu-wrapper">
+      <div class="offcanvas__widget">
+          <a href="#"><i class="fa fa-cart-plus"></i></a>
+          <a href="#" class="search-switch"><i class="fa fa-search"></i></a>
+          <a href="#" class="primary-btn">Add Car</a>
+      </div>
+      <div class="offcanvas__logo">
+          <a href="{%url 'homepage' %}"><img src="{% static 'homepage/img/logo.png' %}" alt=""></a>
+      </div>
+      <div id="mobile-menu-wrap"></div>
+      <ul class="offcanvas__widget__add">
+          <li><i class="fa fa-clock-o"></i> Week day: 08:00 am to 18:00 pm</li>
+          <li><i class="fa fa-envelope-o"></i>  </li>
+      </ul>
+      <div class="offcanvas__phone__num">
+          <i class="fa fa-user"></i>
+          <span> </span>
+      </div>
+      <div class="offcanvas__social">
+          <a href="#"><i class="fa fa-facebook"></i></a>
+          <a href="#"><i class="fa fa-twitter"></i></a>
+          <a href="#"><i class="fa fa-google"></i></a>
+          <a href="#"><i class="fa fa-instagram"></i></a>
+      </div>
+  </div>
+  <!-- Offcanvas Menu End -->
+
+  <!-- Header Section Begin -->
+  <header class="header">
+      <div class="header__top">
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-7">
+                      <ul class="header__top__widget">
+                          <li><i class="fa fa-clock-o"></i> Week day: 08:00 am to 18:00 pm</li>
+                          {% comment %} <li><i class="fa fa-envelope-o"></i> {{ user }}</li> {% endcomment %}
+                      </ul>
+                  </div>
+                  <div class="col-lg-5">
+                      <div class="header__top__right">
+                          <div class="header__top__phone">
+                              <i class="fa fa-user"></i>
+                              {% comment %} <span>{{user.first_name}} {{user.last_name}}</span> {% endcomment %}
+                          </div>
+                          <div class="header__top__social">
+                              <a href="#"><i class="fa fa-facebook"></i></a>
+                              <a href="#"><i class="fa fa-twitter"></i></a>
+                              <a href="#"><i class="fa fa-google"></i></a>
+                              <a href="#"><i class="fa fa-instagram"></i></a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-2">
+                  <div class="header__logo">
+                      <a href="./index.html"><img src="{% static 'homepage/img/logo.png' %}" alt=""></a>
+                  </div>
+              </div>
+              <div class="col-lg-10">
+                  <div class="header__nav">
+                      <nav class="header__menu">
+                          <ul>
+                              {% comment %} <li class="{% if active_page == 'home' %}active{% endif %}"><a href="{%url 'homepage' %}">Home</a></li> {% endcomment %}
+                              {% comment %} <li  class="{% if active_page == 'car' %}active{% endif %}"><a href="{%url 'car' %}">Cars</a></li> {% endcomment %}
+                              {% comment %} <li><a href="{%url 'blog' %}">Blog</a></li> {% endcomment %}
+                              {% comment %} <li class="{% if active_page == 'home' %}active{% endif %}"><a href="{%url 'homepage' %}"><a href="#">Pages</a>
+                                  <ul class="dropdown">
+                                      <li><a href="{%url 'about' %}">About Us</a></li>
+                                      <li><a href="{%url 'car-detail' %}">Car Details</a></li>
+                                      
+                                  </ul>
+                              </li> {% endcomment %}
+                              <li class="{% if active_page == 'about' %}active{% endif %}"><a href="{%url 'about' %}">About</a></li>
+                              {% comment %} <li class="{% if active_page == 'register' %}active{% endif %}"><a href="{%url 'index' %}">Register</a></li> {% endcomment %}
+                          </ul>
+                      </nav>
+                      <div class="header__nav__widget">
+                          <div class="header__nav__widget__btn">
+                              <a href=""><i class="fa fa-user"></i></a>
+                              <a href="#" class="search-switch"><i class="fa fa-instagram"></i></a>
+                          </div>
+                          <a href="{% url 'index' %}" class="primary-btn">Register User</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="canvas__open">
+              <span class="fa fa-bars"></span>
+          </div>
+      </div>
+  </header>  
+   
+  <section class="hero spad set-bg" data-setbg="{% static 'homepage/img/hero-bg.jpg' %}">
+    <div class="content">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-6 contents">
+            {% comment %} <img src="{% static 'login/images/undraw_file_sync_ot38.svg' %}" alt="Image" class="img-fluid"> {% endcomment %}
+            <div class="hero__text">
+              <div class="hero__text__title">
+                  <span>FIND YOUR DREAM CAR</span>
+                  <h2>Porsche Cayenne S</h2>
+              </div>
+              <div class="hero__text__price">
+                  {% comment %} <div class="car-model">Model 2019</div> {% endcomment %}
+                  {% comment %} <h2>$399<span>/Month</span></h2> {% endcomment %}
+              </div>
+              <a href="#" class="primary-btn"><img src="{% static 'homepage/img/wheel.png' %}" alt=""> Test Drive</a>
+              <a href="#" class="primary-btn more-btn">Learn More</a>
+            </div>
+          </div> 
+          <div class="col-md-6 contents">
+            <div class="row justify-content-center">
+              <div class="col-md-12">
+                <div class="form-block">
+                    <div class="mb-4">
+                    <h3 style="color: white;" >  <strong> Sign In </strong></h3> <br>
+  
+                    {{error_message}}
+                    <p style="color: white;" class="mb-4">Welcome ! Find your dream car here.</p>
+                  </div>
+  
+                     
+                  <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group first">
+                      {% comment %} <label name='username' for="username">Username</label> {% endcomment %}
+                      <input placeholder='Email' type="text" class="form-control" id="username" name="username" required>
+  
+                    </div>
+                    <div class="form-group last mb-4">
+                      {% comment %} <label for="password">Password</label> {% endcomment %}
+                      <input placeholder='Password' name='password'  type="password" class="form-control" id="password" required>
+                      
+                    </div>
+                    
+                    <div class="d-flex mb-5 align-items-center">
+                      <label class="control control--checkbox mb-0"><span class="caption">Remember me</span>
+                        <input type="checkbox" checked="checked"/>
+                        <div class="control__indicator"></div>
+                      </label>
+                      {% comment %} <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password</a></span> {% endcomment %}
+                    </div>
+  
+                    <input type="submit" value="Log In" class="btn btn-pill text-white btn-block btn-primary custom-button">
+  
+                    <span class="d-block text-center my-4 text-muted"> or sign in with</span>
+                    
+                    <div class="social-login text-center"> 
+                      <a href="#" class="facebook">
+                        <span class="icon-facebook mr-3"></span> 
+                      </a>
+                      <a href="#" class="twitter">
+                        <span class="icon-twitter mr-3"></span> 
+                      </a>
+                      <a href="#" class="google">
+                        <span class="icon-google mr-3"></span> 
+                      </a>
+                    </div> 
+                  </form>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+          
+        </div>
+      </div>
+    </div>    
+  </section>
+    <!-- Hero Section End -->
+
+  
+  {% comment %} <div class="content">
+    <div class="container">
+      <div class="row justify-content-center">
+       <div class="col-md-6 order-md-2">
+          <img src="{% static 'login/images/undraw_file_sync_ot38.svg' %}" alt="Image" class="img-fluid">
+        </div>
+        <div class="col-md-6 contents">
+          <div class="row justify-content-center">
+            <div class="col-md-12">
+              <div class="form-block">
+                  <div class="mb-4">
+                  <h3>Sign In  <strong> </strong></h3>
+
+                  {{error_message}}
+                  <p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</p>
+                </div>
+
+                   
+                <form method="post">
+                  {% csrf_token %}
+                  <div class="form-group first">
+                    <label name='username' for="username">Username</label>
+                    <input placeholder='Email' type="text" class="form-control" id="username" name="username" required>
+
+                  </div>
+                  <div class="form-group last mb-4">
+                    <label for="password">Password</label>
+                    <input placeholder='Password' name='password'  type="password" class="form-control" id="password" required>
+                    
+                  </div>
+                  
+                  <div class="d-flex mb-5 align-items-center">
+                    <label class="control control--checkbox mb-0"><span class="caption">Remember me</span>
+                      <input type="checkbox" checked="checked"/>
+                      <div class="control__indicator"></div>
+                    </label>
+                    <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password</a></span>
+                  </div>
+
+                  <input type="submit" value="Log In" class="btn btn-pill text-white btn-block btn-primary">
+
+                  <span class="d-block text-center my-4 text-muted"> or sign in with</span>
+                  
+                  <div class="social-login text-center">
+                    <a href="#" class="facebook">
+                      <span class="icon-facebook mr-3"></span> 
+                    </a>
+                    <a href="#" class="twitter">
+                      <span class="icon-twitter mr-3"></span> 
+                    </a>
+                    <a href="#" class="google">
+                      <span class="icon-google mr-3"></span> 
+                    </a>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        
+      </div>
+    </div>
+  </div> {% endcomment %}
+
+  
+    <script src="{% static 'login/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'login/js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'homepage/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'homepage/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'homepage/js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'homepage/js/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'homepage/js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'homepage/js/mixitup.min.js' %}"></script>
+    <script src="{% static 'homepage/js/jquery.slicknav.js' %}"></script>
+    <script src="{% static 'homepage/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'homepage/js/main.js' %}"></script>
+  </body>
+</html>

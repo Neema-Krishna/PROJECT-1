@@ -1,0 +1,66 @@
+{% load static %}
+
+{% include "adminpage/adminheader.html" %}
+
+
+
+ <!-- Begin Page Content -->
+ <div class="container-fluid">
+
+    <!-- content -->
+    <div class="row">
+        <div class="container-fluid">
+
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                             
+                            <thead>
+                                <tr>
+                                    <th>User</th>
+                                    <th>Vehilce Booked</th>
+                                     
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                     
+                                     
+                                </tr>
+                            </thead>
+                            
+                           
+                            <tbody>
+                                {% comment %} {% for vehicle in vehiclesadminview %}
+                                <tr>
+                                    <td><a href="{% url 'vehicledetail' vehicle.id %}"> {{vehicle.name.v_name}}</a></td> 
+                                    <td>{{vehicle.vin_number}}</td>
+                                    
+                                    <td>{{vehicle.year}}</td>
+                                    <td>Rs.{{vehicle.price}}</td>
+                                    <td>{{vehicle.gear_type}}</td>
+                                    <td>{{vehicle.fueltype}}</td>
+
+                                    <td> <button><a href="{% url 'vehicle_del' vehicle.id %}"> Delete </a></button></td>
+                                    
+                                </tr>
+                                {% endfor %} {% endcomment %}
+                            </tbody>
+                           
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+    </div>
+</div>     
+
+
+</div>
+
+{% include 'adminpage/adminfooter.html'%}

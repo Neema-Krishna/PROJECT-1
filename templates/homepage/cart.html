@@ -1,0 +1,162 @@
+{% include 'userheader.html' %}
+{% load static %}
+
+<style>
+    .add-to-cart-button {
+        background-color: #5392b654; /* Pale Green */
+        color: #000; /* Text color */
+        padding: 5px 10px;
+        border: none;
+        border-radius: 5px;
+        margin-left: -50px; /* Add some space between the name and the button */
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .add-to-cart-button:hover {
+        background-color: #16547770; /* Slightly darker on hover */
+    }
+</style>
+
+
+<div class="breadcrumb-option set-bg" data-setbg="{% static 'homepage/img/breadcrumb-bg.jpg' %}">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Car Listing</h2>
+                    <div class="breadcrumb__links">
+                        <a href="{% url 'homepage'%}"><i class="fa fa-home"></i> Home</a>
+                        <span>Cart</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb Begin -->
+{{ cart }}
+<!-- Car Section Begin -->
+<section class="car spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="car__sidebar">
+                    <div class="car__search">
+                        <h5>Car Search</h5>
+                        <form action="{% url 'car' %}" method="post">
+                            {% csrf_token %}
+                            <input type="text" placeholder="Search..." name="cname">
+                            <button type="submit"><i class="fa fa-search"></i></button>
+                        </form>
+                    </div>
+                     
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="car__filter__option">
+                    <div class="row">
+                        {% comment %} <div class="col-lg-6 col-md-6">
+                            <div class="car__filter__option__item">
+                                <h6>Show On Page</h6>
+                                <select>
+                                    <option value="">9 Car</option>
+                                    <option value="">15 Car</option>
+                                    <option value="">20 Car</option>
+                                </select>
+                            </div>
+                        </div> {% endcomment %}
+                        <div class="col-lg-12 col-md-6">
+                             
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                     
+                        {% for car in cars1 %}
+                        
+                           <div class="col-lg-4 col-md-3">
+                                <div class="car__item">
+                                    <div class="car__item__pic__slider owl-carousel">
+                                        <img src={{ car.vehicle_cart.image.url }} alt={{ car.image }}>
+                                        {% if car.vehicle_cart.image1 %}
+                                        <img src="{{ car.vehicle_cart.image1.url }}" alt="{{ car.name }}">
+                                        {% endif %}
+                                        {% if car.image2 %}
+                                        <img src="{{ car.vehicle_cart.image2.url }}" alt="{{ car.name }}">
+                                        {% endif %}
+                                        {% if car.image3 %}
+                                        <img src="{{ car.vehicle_cart.image3.url }}" alt="{{ car.name }}">
+                                        {% endif %}
+                                    </div>
+                                    <div class="car__item__text">
+                                        <div class="car__item__text__inner">
+                                            <div class="label-date"></div>
+                                            <button style="margin-left:-47px" class="add-to-cart-button" ><a href="{% url  'carts' car.id  %}" > Book Car </a></button>
+                                             
+                                            
+                                            <h5><a href="#">{{car.vehicle_cart.name}}</a> </h5>   
+
+                                            
+                                            <ul>
+                                                <li><span>{{ car.vehicle_cart.fueltype}}</span></li>
+                                                <li><span>{{car.vehicle_cart.mileagae}}</span></li>
+                                                <li><span>{{car.vehicle_cart.gear_type}}</span></li>
+                                            </ul>
+                                        </div>
+                                        <div class="car__item__price">
+                                            <span class="{% if car.vehicle_cart.purpose == 'For Sale' %} car-option sale {% else%} car-option {% endif %} ">{{car.vehicle_cart.purpose}}</span>
+
+                                            <h6><span>                      
+                                                    {% if car.purpose == 'For Sale' %}
+                                                        Rs.{{car.vehicle_cart.price}}
+                                                    {% else %}
+                                                        Rs.{{car.vehicle_cart.price}}/Day
+                                                    {% endif %} 
+                                                    
+
+                                            </span></h6>
+
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    
+                     
+                     
+                <div class="pagination__option">
+                    {% if cars1.has_previous %}
+                      {% comment %} <a href="?page=1">1</a> {% endcomment %}
+                      <a href="?page={{ cars1.previous_page_number }}">Back</a>
+                    {% endif %}
+                    {% for page_number in cars1.paginator.page_range %}
+                       <a href="?page={{ page_number }}" {% if page_number == cars1.number %}class="active"{% endif %}>{{ page_number }}</a>
+                    {% endfor %}
+                    {% if cars1.has_next %}
+                       <a href="?page={{ cars1.next_page_number }}">Next</a>
+                       {% comment %} <a href="?page={{ cars1.paginator.num_pages }}">{{ cars1.paginator.num_pages }}</a> {% endcomment %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Car Section End -->
+
+
+
+<script>
+    function sortCars() {
+        console.log("sortCars function called"); // Add this line for debugging
+        var selectElement = document.getElementById('sort-cars');
+        var selectedValue = selectElement.options[selectElement.selectedIndex].value;
+        {% comment %} var sortUrl = '?sort=' + selectedValue; {% endcomment %}
+        var sortUrl = '{% url 'car-listing-sort' %}?sort=' + selectedValue;
+        console.log("sortUrl:", sortUrl); // Add this line for debugging
+        window.location.href = sortUrl;  // Redirect to the new URL with the sorting parameter
+    }
+
+</script>
+{% include 'userfooter.html' %}

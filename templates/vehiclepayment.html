@@ -1,0 +1,236 @@
+{% include 'userheader.html' %}
+{% load static %}
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+</head>
+<style>
+    .add-to-cart-button {
+        background-color: #5392b654; /* Pale Green */
+        color: #000; /* Text color */
+        padding: 5px 10px;
+        border: none;
+        border-radius: 5px;
+        margin-left: -50px; /* Add some space between the name and the button */
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .add-to-cart-button:hover {
+        background-color: #16547770; /* Slightly darker on hover */
+    }
+</style>
+    <!-- Breadcrumb End -->
+    <div class="breadcrumb-option set-bg" data-setbg="{% static 'homepage/img/breadcrumb-bg.jpg' %}">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>Car Listing</h2>
+                        <div class="breadcrumb__links">
+                            <a href="{% url 'homepage'%}"><i class="fa fa-home"></i> Home</a>
+                            <span>About</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb Begin -->
+
+    <!-- Car Section Begin -->
+    <section class="car spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="car__sidebar">
+                        <div style="margin-top:22px;" class="car__search">
+                            <h5 style="color:Red;"> <strong>  {{car.name.brand_name.b_name}} | {{car.name}} </strong></h5>
+                            <br>
+                            <h5>PROPERTIES</h5>
+                            <br>
+                             
+                            <h5>VIN-Number : {{car.vin_number}}</h5>
+                            <h5>Kilometer : {{car.kilometer}}</h5>
+                            <h5>Color : {{car.color}}</h5>
+                            <h5>Kilometer : {{car.kilometer}}</h5>
+                            
+                            <br>
+                            <br>
+                            <div class="car__filter__btn">
+                                <button style="color:Red;" type="submit" class="site-btn">Reset FIlter</button>
+                            </div>
+                            {% comment %} <form action="{% url 'car' %}" method="post">
+                                {% csrf_token %}
+                                <input type="text" placeholder="Search..." name="cname">
+                                <button type="submit"><i class="fa fa-search"></i></button>
+                            </form> {% endcomment %}
+                        </div>
+                        <div class="car__filter">
+                            {% comment %} <h5>Car Properties</h5> {% endcomment %}
+                            {% comment %} <form action="#"> {% endcomment %}
+                                {% comment %} <select id="brandSelect">
+                                    <option data-display="Brand">Select Brand</option>
+                                    {% for brand in brands %}
+                                        <option value="{{ brand.id }}">{{ brand.b_name }}</option>
+                                    {% endfor %}
+                                </select>
+                                
+                                <select id="modelSelect">
+                                    <option data-display="Model">Select Model</option>
+                                </select>
+                                
+                                
+                                <select>
+                                    <option value="">Engine</option>
+                                    <option value="">BS3</option>
+                                    <option value="">BS4</option>
+                                    <option value="">BS5</option>
+                                    <option value="">BS6</option>
+                                </select>
+                                <select>
+                                    <option value="">Colors</option>
+                                    {% for color in color %}
+                                        <option value="{{ color}}">{{ color }}</option>
+                                    {% endfor %}
+                                </select>
+                                <div class="filter-price">
+                                    <p>Price:</p>
+                                    <div class="price-range-wrap">
+                                        <div class="filter-price-range"></div>
+                                        <div class="range-slider">
+                                            <div class="price-input">
+                                                <input type="text" id="filterAmount">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                              
+                                <div class="car__filter__btn">
+                                    <button type="submit" class="site-btn">Reset FIlter</button>
+                                </div>
+                            </form> {% endcomment %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="car__filter__option">
+                        <div class="row">
+                            {% comment %} <div class="col-lg-6 col-md-6">
+                                <div class="car__filter__option__item">
+                                    <h6>Show On Page</h6>
+                                    <select>
+                                        <option value="">9 Car</option>
+                                        <option value="">15 Car</option>
+                                        <option value="">20 Car</option>
+                                    </select>
+                                </div>
+                            </div> {% endcomment %}
+                            <div class="col-lg-12 col-md-6">
+                                {% comment %} <div class="car__filter__option__item car__filter__option__item--right">
+                                    <h6>Sort By Price</h6>
+                                    <select id="sort-cars" onchange="sortCars()">
+                                        <option value="highest">Select</option>
+                                        <option value="lowest" {% if sort_param == 'lowest' %}selected{% endif %}>Price: Lowest First</option>
+                                        <option value="highest" {% if sort_param == 'highest' %}selected{% endif %}>Price: Highest First</option>
+                                    </select>
+                                    </select>
+                                </div> {% endcomment %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        {% comment %} {% for car in cars1 %} {% endcomment %}
+                        <div class="col-lg-12 col-md-3">
+                                <div class="car__item">
+                                    <div class="car__item__pic__slider owl-carousel">
+                                        <img src={{ car.image.url }} alt={{ car.image }}>
+                                        {% if car.image1 %}
+                                           <img src="{{ car.image1.url }}" alt="{{ car.name }}">
+                                        {% endif %}
+                                        {% if car.image2 %}
+                                           <img src="{{ car.image2.url }}" alt="{{ car.name }}">
+                                        {% endif %}
+                                        {% if car.image3 %}
+                                           <img src="{{ car.image3.url }}" alt="{{ car.name }}">
+                                        {% endif %}
+                                    </div>
+                                    <div class="car__item__text">
+                                        <div class="car__item__text__inner">
+                                            <div class="label-date"></div>
+
+                                              <button  class="add-to-cart-button"  id="pay-btn" ><a href="{% url  'paymenthandler' car.id  %}" > Proceed to Payment</a></button>
+                                            <br>
+                                            <br>
+                                            <ul>
+                                                <li><span> Fuel Type :{{ car.fueltype}}</span></li>
+                                                <li><span> Mileage :{{car.mileagae}}</span></li>
+                                                <li><span> Gear Type :{{car.gear_type}}</span></li>
+                                            </ul>
+
+
+                                        </div>
+                                        <div class="car__item__price">
+                                            <span class="{% if car.purpose == 'For Sale' %} car-option sale {% else%} car-option {% endif %} ">{{car.purpose}}</span>
+
+                                            <h6><span>
+                                                    
+                                                    {% if car.purpose == 'For Sale' %}
+                                                        Rs.{{car.price}}
+                                                    {% else %}
+                                                        Rs.{{car.price}}/Day
+                                                    {% endif %} 
+                                                    
+
+                                            </span></h6>
+
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                        {% comment %} {% endfor %} {% endcomment %}
+                         
+                         
+                     
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Razorpay's Javascript code. -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script>
+    console.log("hai");
+    var options = {
+       
+      // Enter the Key ID generated from the Dashboard
+      key: "{{ razorpay_merchant_key }}", 
+       
+      // Amount is in currency subunits.
+      // Default currency is INR. Hence, 
+      // 50000 refers to 50000 paise
+      amount: "{{ razorpay_amount }}", 
+      currency: "{{ currency }}",
+       
+      // Your/store name.
+      name: "Dj Razorpay", 
+       
+      // Pass the `id` obtained in the response of Step 1
+      order_id: "{{ razorpay_order_id }}", 
+      callback_url: "{{ callback_url }}",
+    };
+     
+    // initialise razorpay with the options.
+    var rzp1 = new Razorpay(options);
+     
+    // add event listener to the payment button.
+    document.getElementById("pay-btn").onclick = function (e) {
+      rzp1.open();
+      e.preventDefault();
+    };
+</script>
+
+{% include 'userfooter.html' %}

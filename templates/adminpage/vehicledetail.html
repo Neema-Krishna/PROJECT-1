@@ -1,0 +1,110 @@
+{% load static %}
+
+{% include "adminpage/adminheader.html" %}
+
+ 
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Custom CSS for card styling */
+        .custom-card {
+            max-width: 540px;
+            margin: 0 auto; /* Center the card */
+            box-shadow: 8px 8px 8px rgba(0.2, 0, 0, 0.3); /* Added shadow for a projected effect */
+        }
+
+        /* Styling for the car carousel */
+        .car-carousel {
+            max-height: auto; /* Adjust the height automatically based on the current image */
+        }
+
+        /* Additional styling for boxes */
+        .box {
+            background-color: #dddfeb;
+            padding: 4px;
+            border-radius: -10px;
+            margin-bottom: 17px; /* Increased the margin for spacing */
+            font-weight: bold; 
+            margin-left:36px;  
+            width: 440px;  
+            text-align: center;
+        }
+
+        /* Styling for Price */
+        .price {
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Styling for Vehicle Name */
+        .vehicle-name {
+            font-weight: bold;
+            text-align: center; /* Center the text */
+        }
+        
+        /* Styling for Fuel Type and Gear Type containers */
+        .type-container {
+            {% comment %} display: flex; {% endcomment %}
+            {% comment %} margin-bottom:-20px {% endcomment %}
+            align-items: center;
+            {% comment %} margin-left:6px {% endcomment %}
+        }
+        
+        .divider {
+            height: 100%;
+            width: 1px; /* Vertical divider */
+            background-color: black;
+            margin: 0 120px; /* Adjust the spacing between the divider and text */
+        }
+    </style>
+</head>
+<body>
+
+    
+    <div class="card custom-card">
+        <div id="carCarousel" class="carousel slide car-carousel" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{{ vehicle.image.url }}" class="d-block w-100" alt={{ vehicle.image.url }}>
+                </div>
+                <div class="carousel-item">
+                    {% if vehicle.image1 %}
+                       <img src="{{ vehicle.image1.url }} " class="d-block w-100" alt="Car Image 2">
+                    {% endif %}
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+        <div class="card-body">
+            <p style="color: red;  " class="price"> Price : Rs.{{ vehicle.price }}</p>
+            <div style=" background-color:#0000005c; width: 453px; margin-left:30px"  class="box">{{vehicle.name.v_name}} <span></span> |  {{vehicle.name.brand_name.b_name}}</div>
+            <div  class="type-container">
+                <div class="box">Gear Type : {{vehicle.gear_type}} |  Fuel Type: {{vehicle.fueltype}}</div>
+                <div class="divider"></div> <!-- Vertical divider -->
+                <div class="box">Fuel Type: {{vehicle.fueltype}} </div>
+            </div>
+            
+            <div  class="box">Color : {{vehicle.color}}  |  Engine : {{vehicle.engine}}</div>
+             
+             
+             
+        </div>
+    </div>
+
+
+{% include 'adminpage/adminfooter.html' %}
+
+
+
+
+
+{% comment %} {% static 'homepage/img/cars/details/cd-2.jpg' %} {% endcomment %}

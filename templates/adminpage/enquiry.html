@@ -1,0 +1,63 @@
+{% load static %}
+
+{% include "adminpage/adminheader.html" %}
+
+
+ <!-- Begin Page Content -->
+ <div class="container-fluid">
+
+    <!-- content -->
+    <div class="row">
+        <div class="container-fluid">
+
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                             
+                            <thead>
+                                <tr>
+                                    <th>User Name</th>
+                                    <th>Email</th>
+                                    <th>Subject</th>
+                                    <th>Question</th>
+                                    <th>Reply</th> 
+                                     
+                                     
+                                </tr>
+                            </thead>
+                            
+                           
+                            <tbody>
+                                {% for query in enquiry %}
+                                <tr>
+                                    <td>{{query.user.first_name}} {{query.user.last_name}}</td> 
+                                    <td>{{query.email}}</td>
+                                    
+                                    <td>{{query.subject}}</td>
+                                     
+                                    <td>{{query.Your_question}}</td>
+                                     
+
+                                    <td> <button><a href="{% url 'enquiryreply' query.id %} "> Reply </a></button></td>
+                                    
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                           
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+    </div>
+</div>     
+
+
+{% include 'adminpage/adminfooter.html'%}
